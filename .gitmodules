@@ -2,3 +2,4 @@
 	path = PerfOptCSRs
 	url = https://github.com/uah-srg-tech/PerfOptCSRs
 	main = origin.main
+	ignore = dirty
