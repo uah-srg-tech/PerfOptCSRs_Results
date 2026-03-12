@@ -1,0 +1,25 @@
+#create_clock -period 4.300 -name clk -waveform {0.000 2.150} [get_ports I_clock]
+
+#set_input_delay -clock [get_clocks -regexp .*] -min 1.500 [get_ports {I_inst* I_reset}]
+#set_input_delay -clock [get_clocks -regexp .*] -max 2.500 [get_ports {I_inst* I_reset}]
+#set_output_delay -clock [get_clocks -regexp .*] -min -0.500 [get_ports {O_result* O_exception}]
+#set_output_delay -clock [get_clocks -regexp .*] -max -3.000 [get_ports {O_result* O_exception}]
+
+#set_input_delay  -clock [get_clocks -regexp clk_out_clk_wiz_0] -min  3.500 [get_ports {I_inst* I_reset}]
+set_input_delay  -clock [get_clocks -of_objects [get_pins clk_wiz*/inst/mmcm_adv_inst/CLKOUT0]] -min  3.500 [get_ports {I_inst* rst}]
+#set_input_delay  -clock [get_clocks -regexp clk_out_clk_wiz_0] -max  1.000 [get_ports {I_inst* I_reset}]
+set_input_delay  -clock [get_clocks -of_objects [get_pins clk_wiz*/inst/mmcm_adv_inst/CLKOUT0]] -max  1.000 [get_ports {I_inst* rst}]
+set_output_delay -clock [get_clocks -of_objects [get_pins clk_wiz*/inst/mmcm_adv_inst/CLKOUT0]] -min -1.000 [get_ports {O_result* O_exception O_ok O_nook O_heartbeat}]
+set_output_delay -clock [get_clocks -of_objects [get_pins clk_wiz*/inst/mmcm_adv_inst/CLKOUT0]] -max -4.000 [get_ports {O_result* O_exception O_ok O_nook O_heartbeat}]
+
+
+set_property IOSTANDARD LVCMOS18 [get_ports [list rst]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list O_exception]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list O_ok]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list O_nook]]
+set_property IOSTANDARD LVCMOS18 [get_ports [list O_heartbeat]]
+set_property PACKAGE_PIN J15 [get_ports rst]
+set_property PACKAGE_PIN J13 [get_ports O_exception]
+set_property PACKAGE_PIN K15 [get_ports O_ok]
+set_property PACKAGE_PIN H17 [get_ports O_nook]
+set_property PACKAGE_PIN N14 [get_ports O_heartbeat]
